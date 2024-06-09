@@ -1,0 +1,45 @@
+<form [formGroup]="policyForm" (ngSubmit)="onSubmit()" #myForm>
+    <mat-card class="example-card">
+        <mat-card-header>
+            @if(isEdit){
+            <div>Edit policy</div>
+            }
+            @else{
+            <div>Add Policy</div>
+            }
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Insurance Amount</mat-label>
+                <input matInput placeholder="Insurance Amount" type="number" name="insuranceAmount"
+                    formControlName="insuranceAmount">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Policy Number</mat-label>
+                <input matInput placeholder="policy Number" type="text" name="policyNumber"
+                    formControlName="policyNumber">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerStartDate" formControlName="startDate">
+                <!-- <mat-hint>Start Date</mat-hint> -->
+                <mat-label>Start Date</mat-label>
+
+                <mat-datepicker-toggle matIconSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStartDate></mat-datepicker>
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerEndDate" formControlName="endDate">
+                <!-- <mat-hint>End Date</mat-hint> -->
+                <mat-label>End Date</mat-label>
+                <mat-datepicker-toggle matIconSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEndDate></mat-datepicker>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="cancel" type="button" (click)="cancel()">cancel</button>
+            <button mat-flat-button color="primary" type="submit" value="Send"
+                [disabled]="!policyForm.valid">send</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

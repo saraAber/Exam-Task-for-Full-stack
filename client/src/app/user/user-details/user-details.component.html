@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-header><b>{{user?.name}}</b></mat-card-header>
+    <mat-card-content>{{user?.email}}</mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="Edit()">edit</button>
+        <button mat-flat-button color="primary" (click)="Delete()">Delete User</button>
+    </mat-card-actions>
+</mat-card>
+
+<app-insurance-policy-details [userId]="userId"></app-insurance-policy-details>
+@if(isEdit){
+<app-user-add [user]="user" (update)="updateUser($event)"></app-user-add>
+}
+<router-outlet></router-outlet>
