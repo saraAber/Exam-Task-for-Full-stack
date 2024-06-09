@@ -13,7 +13,6 @@ namespace DAL
         {
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
             serviceCollection.AddScoped<IInsurancePolicyRepository, InsurancePolicyRepository>();
-            //opetins => opetins.UseSqlite(serviceCollection.GetConnectionString("AppDbContext"))
             serviceCollection.AddDbContext<AppDbContext>();
 
 

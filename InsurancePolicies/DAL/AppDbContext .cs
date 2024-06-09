@@ -1,4 +1,5 @@
 ﻿using DAL.Model;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -21,7 +22,11 @@ namespace DAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite(@"Data Source=..\\..\\..\\SQLite\\test.db");
+
+                var builder = new SqliteConnectionStringBuilder("Data Source=MyDatabase.db");
+                builder.DataSource = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, builder.DataSource);
+
+                optionsBuilder.UseSqlite(builder.ToString());
             }
         }
     }
