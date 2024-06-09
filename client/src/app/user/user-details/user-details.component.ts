@@ -7,11 +7,12 @@ import { LocationStrategy } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { UserService } from '../../../service/user.service';
 import { UserAddComponent } from '../user-add/user-add.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [RouterOutlet, UserAddComponent, InsurancePolicyDetailsComponent, MatCardModule],
+  imports: [RouterOutlet, UserAddComponent, InsurancePolicyDetailsComponent,MatButtonModule, MatCardModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css',
   providers: [UserService]
