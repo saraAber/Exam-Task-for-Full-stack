@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [RouterOutlet, UserAddComponent, InsurancePolicyDetailsComponent,MatButtonModule, MatCardModule],
+  imports: [RouterOutlet, UserAddComponent, InsurancePolicyDetailsComponent, MatButtonModule, MatCardModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css',
   providers: [UserService]
@@ -30,10 +30,11 @@ export class UserDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(x => {
-      this.userId = x['id'];
-      this.user = this.location.getState() as User;
-    })
+    this.activatedRoute.params
+      .subscribe(x => {
+        this.userId = x['id'];
+        this.user = this.location.getState() as User;
+      })
   }
 
   Delete() {

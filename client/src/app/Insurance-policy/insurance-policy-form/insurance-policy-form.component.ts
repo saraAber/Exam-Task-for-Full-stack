@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { InsurancePolicy } from '../../../models/insurance-policy.model';
 import { MatButtonModule } from '@angular/material/button';
+import { DialogErrComponent } from '../../dialog/dialog-err/dialog-err.component';
 
 @Component({
   selector: 'app-insurance-policy-form',
@@ -29,6 +30,7 @@ export class InsurancePolicyFormComponent implements OnInit {
   policyForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
+    private dialog: MatDialog,
     private insurancePolicyService: InsurancePolicyService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private ref: MatDialogRef<Component>
@@ -66,13 +68,19 @@ export class InsurancePolicyFormComponent implements OnInit {
     if (this.isEdit && this.insurancePolicy > -1) {
       this.insurancePolicyService
         .UpdateInsurancePolicy(this.insurancePolicy, this.policyForm.value)
-        .subscribe(x => this.ref.close(x));
+        .subscribe({
+          next: x => this.ref.close(x),
+          error: () => this.dialog.open(DialogErrComponent, { minWidth: '60vh', minHeight: '50wh', disableClose: true }),
+        })
     }
     else {
 
       this.insurancePolicyService
         .AddInsurancePolicy({ ...this.policyForm.value, userId: this.userId })
-        .subscribe(x => this.ref.close(x));
+        .subscribe({
+          next: x => this.ref.close(x),
+          error: () => this.dialog.open(DialogErrComponent, { minWidth: '60vh', minHeight: '50wh', disableClose: true }),
+        })
     }
   }
 

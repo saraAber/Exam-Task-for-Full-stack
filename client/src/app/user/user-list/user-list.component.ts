@@ -27,12 +27,12 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.userEvent.subscribe(x => {
-      this.users = x
-    });
+    this.userService.userEvent
+      .subscribe(x => this.users = x);
     this.userService.GetAllUsers();
   }
-  userDelete = (userId: number | any) => {
+
+  userDelete = (userId: number) => {
     const ref = this.dialog.open(DialogDeleteComponent, {
       data: userId,
       minWidth: '60vh', minHeight: '50wh', disableClose: true,
@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
     this.route.navigate(['add-user'])
   }
 
-  userDetails(user: User | any) {
+  userDetails(user: User) {
     this.route.navigate(['user-details', user.id], { state: user })
   }
 

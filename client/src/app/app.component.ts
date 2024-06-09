@@ -9,12 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserListComponent, MatToolbarModule,
-    
-    MatIconModule, MatButtonModule, InsurancePolicyFormComponent, RouterLink],
+  imports: [RouterOutlet,
+    UserListComponent, MatToolbarModule,
+    MatIconModule, MatButtonModule,
+    InsurancePolicyFormComponent, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'client';
 }

@@ -5,17 +5,13 @@ import { InsurancePolicyFormComponent } from './Insurance-policy/insurance-polic
 import { UserAddComponent } from './user/user-add/user-add.component';
 
 export const routes: Routes = [
-    {
-        path: 'user', component: UserListComponent,
-    },
+    { path: 'user', component: UserListComponent },
     {
         path: "user-details/:id", component: UserDetailsComponent,
-        children: [{
-            path: "add-policy", component: InsurancePolicyFormComponent,
-        }, {
-            path: "edit-policy/:insurancePolicyId", component: InsurancePolicyFormComponent
-
-        }]
+        children: [
+            { path: "add-policy", component: InsurancePolicyFormComponent },
+            { path: "edit-policy/:insurancePolicyId", component: InsurancePolicyFormComponent }
+        ]
     },
     { path: 'add-user', component: UserAddComponent }
 ]

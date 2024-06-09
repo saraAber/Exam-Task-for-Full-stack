@@ -23,6 +23,5 @@ export class InsurancePolicyService {
 
     deleteInsurancePolicy(id: number) {
         return this.httpClient.delete<InsurancePolicy>(`${currentUrl}?id=${id}`)
-
     }
 }
